@@ -3,7 +3,7 @@ package primitives;
 import java.util.Objects;
 
 /**
- * Class 'Point-2D' is representing a dot on two-dimensional plane
+ * Class 'Point_2D' is representing a dot on two-dimensional plane
  * for Cartesian Coordinate system.
  */
 public class Point_2D
@@ -24,7 +24,7 @@ public class Point_2D
     }
 
     /**
-     * default constructor for Point_2d, the point(dot) will be the first the hinges
+     * default constructor for Point_2D, the point(dot) will be the first the hinges
      * (0, 0)
      */
 
@@ -72,6 +72,11 @@ public class Point_2D
         this.x = x;
     }
 
+    /**
+     * Point_2D value getter
+     * @return point coordinate
+     */
+
     public Coordinate getY()
     {
         return y;
@@ -82,11 +87,23 @@ public class Point_2D
         this.y = y;
     }
 
+    /**
+     * casting the value of Point_2D in to one string to present it
+     * @return String
+     */
+
     @Override
     public String toString()
     {
         return x.toString() + ", " + y.toString();
     }
+
+    /**
+     * check two things, first, is 'this' have value
+     * second, is the object is just like 'this'
+     * @param o an Object type (also may be Point_2D)
+     * @return true if they are equal, else false
+     */
 
     @Override
     public boolean equals(Object o)

@@ -3,17 +3,38 @@ package primitives;
 import java.util.Objects;
 import java.lang.Math;
 
+/**
+ * Class 'Point_3D' is representing a dot on three-dimensional plane
+ * for Cartesian Coordinate system.
+ */
+
 public class Point_3D extends Point_2D
 {
-    public static Point_3D ZERO = new Point_3D(0, 0, 0);  //ראשית הצירים
+    public static Point_3D ZERO = new Point_3D(0, 0, 0);
+
+    /**
+     * static ZERO to define the first of the hinges (x, y, z) as (0, 0, 0)
+     */
 
     private Coordinate z;
+
+    /**
+     * Point_3D constructor two Coordinates values, each for an axis
+     * @param x for X axis
+     * @param y for Y axis
+     * @param z for Z axis
+     */
 
     public Point_3D(Coordinate x, Coordinate y, Coordinate z)
     {
         super(x, y);
         this.z = z;
     }
+
+    /**
+     * default constructor for Point_3D, the point(dot) will be the first the hinges
+     * (0, 0, 0)
+     */
 
     public Point_3D()
     {
@@ -27,11 +48,21 @@ public class Point_3D extends Point_2D
         this.z = new Coordinate(z);
     }
 
+    /**
+     * copy constructor for Point_3D
+     * @param p3d
+     */
+
     public Point_3D(Point_3D p3d)
     {
         super(p3d.getX(), p3d.getY());
         this.z = p3d.z;
     }
+
+    /**
+     * Point_3D value getter
+     * @return point coordinate on Z axis
+     */
 
     public Coordinate getZ()
     {
@@ -43,11 +74,23 @@ public class Point_3D extends Point_2D
         this.z = z;
     }
 
+    /**
+     * casting the value of Point_3D in to one string to present it
+     * @return String
+     */
+
     @Override
     public String toString ()
     {
         return super.toString() + ", " + z.toString();
     }
+
+    /**
+     * check two things, first, is 'this' have value
+     * second, is the object is just like 'this'
+     * @param o an Object type (also may be Point_3D)
+     * @return true if they are equal, else false
+     */
 
     @Override
     public boolean equals(Object o)
@@ -61,15 +104,33 @@ public class Point_3D extends Point_2D
         return point_3D.getX().equals(this.getX()) && point_3D.getY().equals(this.getY()) && point_3D.getZ().equals(this.getZ());
     }
 
+    /**
+     * subtract calculate the Vector between two points (3D)
+     * @param p3d Point_3D
+     * @return Vector from p3d to 'this'
+     */
+
     public Vector subtract(Point_3D p3d)
     {
         return new Vector(new Point_3D((-p3d.getX().get() + this.getX().get()), (-p3d.getY().get() + this.getY().get()), (-p3d.getZ().get() + this.getZ().get())));
     }
 
+    /**
+     * add calculate new point from 'this' and going by vector to the point
+     * @param vec Vector
+     * @return Point_3D from 'this' by vec
+     */
+
     public Point_3D add(Vector vec)
     {
         return new Point_3D((this.getX().get() + vec.getV().getX().get()), (this.getY().get() + vec.getV().getY().get()), (this.getZ().get() + vec.getV().getZ().get()));
     }
+
+    /**
+     * distanceSquared calculating for build up for distance between two points
+     * @param p3d Point_3D
+     * @return double, the distance power by 2 between two points (3D)
+     */
 
     public double distanceSquared (Point_3D p3d)
     {
@@ -79,6 +140,12 @@ public class Point_3D extends Point_2D
                 +
                 ((this.getZ().get() - p3d.getZ().get()) * (this.getZ().get() - p3d.getZ().get())));
     }
+
+    /**
+     * distance calculate the distance between two points
+     * @param p3d Point_3D
+     * @return double, the distance between two points (3D)
+     */
 
     public double distance (Point_3D p3d)
     {

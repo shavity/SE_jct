@@ -3,9 +3,18 @@ package primitives;
 import java.util.Objects;
 import java.lang.Math;
 
+/**
+ * class Vector is represent a vector between two Point_3D, one any Point_3D, second (0, 0, 0)
+ */
+
 public class Vector
 {
     private Point_3D v;
+
+    /**
+     * one point is enough because its from (0, 0, 0)
+     * @param v Point_3D destination of the vector
+     */
 
     public Vector(Point_3D v)
     {
@@ -75,7 +84,15 @@ public class Vector
 
     public Vector scale (double c)
     {
-        return new Vector(this.v.getX().get() * c, this.v.getY().get() * c, this.v.getZ().get() * c);
+        Coordinate x = new Coordinate(this.v.getX().get() * c);
+        Coordinate y = new Coordinate(this.v.getY().get() * c);
+        Coordinate z = new Coordinate(this.v.getZ().get() * c);
+
+        Point_3D p = new Point_3D(x, y, z);
+
+        this.v = p;
+
+        return this;
     }
 
     public double dotProduct (Vector vec)
