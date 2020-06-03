@@ -14,7 +14,7 @@ public class Point2DTest {
     public void test() {
         Point_2D p1 = new Point_2D(new Coordinate(1.0d),new Coordinate(2.0d));
         /**
-         check that p1 x = what we insert to him
+         check that p1 x = what we insert to him1
          */
         assertEquals(p1.getX(),new Coordinate(1.0d));
         /**
