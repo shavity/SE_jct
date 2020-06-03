@@ -60,7 +60,7 @@ public final class Main {
         Vector u = v.normalized();
         if (u == v)
             out.println("ERROR: normalizated() function does not create a new vector");
-
+//
         // Test operations with points and vectors
         Point_3D p1 = new Point_3D(1, 2, 3);
         if (!Point_3D.ZERO.equals(p1.add(new Vector(-1, -2, -3))))
