@@ -21,6 +21,9 @@ public class Sphere extends RadialGeometry
     @Override
     public Vector getNormal(Point_3D p)
     {
-        return null;
+        /**
+         * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
+         */
+         return new Vector(p.subtract(center));
     }
 }

@@ -22,6 +22,10 @@ public class Cylinder extends Tube
     @Override
     public Vector getNormal(Point_3D p)
     {
+        /**
+         * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
+         *מסובך מדי נשלים בהמשך
+         *  */
         return null;
     }
 }

@@ -20,8 +20,11 @@ public class Tube extends RadialGeometry
     }
 
     @Override
-    public Vector getNormal(Point_3D p)
-    {
+    public Vector getNormal(Point_3D point) {
+        /**
+         * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
+         *מסובך מדי נשלים בהמשך
+         *  */
         return null;
     }
 }
