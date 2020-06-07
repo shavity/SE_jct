@@ -84,5 +84,10 @@ public class Polygon implements Geometry {
     public Vector getNormal(Point_3D point) {
         return _plane.getNormal(point);   //send point
     }
+
+    @Override
+    public List<Point_3D> findIntsersections(Ray ray) {
+        return null;
+    }
 }
 

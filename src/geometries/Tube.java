@@ -4,6 +4,8 @@ import primitives.Point_3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 public class Tube extends RadialGeometry
 {
     private Ray center;
@@ -25,6 +27,11 @@ public class Tube extends RadialGeometry
          * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
          *מסובך מדי נשלים בהמשך
          *  */
+        return null;
+    }
+
+    @Override
+    public List<Point_3D> findIntsersections(Ray ray) {
         return null;
     }
 }

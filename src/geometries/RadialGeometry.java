@@ -1,8 +1,10 @@
 package geometries;
 
 import primitives.Point_3D;
+import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
 import java.util.Objects;
 
 public abstract class RadialGeometry implements Geometry
@@ -51,4 +53,8 @@ public abstract class RadialGeometry implements Geometry
 
     @Override
     public abstract Vector getNormal(Point_3D p);
+
+    @Override
+    public abstract List<Point_3D> findIntsersections(Ray ray);
+
 }

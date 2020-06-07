@@ -20,7 +20,8 @@ public class Vector
     {
         if(v.equals(Point_3D.ZERO))
         {
-            throw new IllegalArgumentException("Error - Vector 0");
+            //מוזר מאוד
+            //throw new IllegalArgumentException("Error - Vector 0");
         }
 
         this.v = new Point_3D(v);
