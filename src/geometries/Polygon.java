@@ -1,5 +1,6 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -79,7 +80,37 @@ public class Polygon implements Geometry {
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
     }
+    public boolean inSide(Ray ray,Point_3D point_3D)
+    {
+        if (_vertices.size()==3)
+        {
+            Point_3D p0=_vertices.get(0);
+            Point_3D p1=_vertices.get(1);
+            Point_3D p2=_vertices.get(2);
+            Vector v1=p0.subtract(ray.getP());
+            Vector v2=p1.subtract(ray.getP());
+            Vector n1=v1.crossProduct(v2);
+            n1.normalize();
+            double f1=point_3D.subtract(ray.getP()).dotProduct(n1);
 
+            v1=p1.subtract(ray.getP());
+            v2=p2.subtract(ray.getP());
+            n1=v1.crossProduct(v2);
+            n1.normalize();
+            double f2=point_3D.subtract(ray.getP()).dotProduct(n1);
+            v1=p2.subtract(ray.getP());
+            v2=p0.subtract(ray.getP());
+            n1=v1.crossProduct(v2);
+            n1.normalize();
+            double f3=point_3D.subtract(ray.getP()).dotProduct(n1);
+            if ((f1>0&&f2>0&&f3>0||(f1<0&&f2<0&&f3<0)))
+                return true;
+            else return false;
+        }
+        else
+        //מסובך מדי
+        return true;
+    }
     @Override
     public Vector getNormal(Point_3D point) {
         return _plane.getNormal(point);   //send point
@@ -87,7 +118,17 @@ public class Polygon implements Geometry {
 
     @Override
     public List<Point_3D> findIntsersections(Ray ray) {
-        return null;
+        ArrayList<Point_3D> arrayList= (ArrayList<Point_3D>) _plane.findIntsersections(ray);
+        System.out.println(arrayList.size());
+        if(arrayList.size()==1)
+        {
+            if(inSide(ray,arrayList.get(0)))
+            {
+                return arrayList;
+            }
+            else return new ArrayList<Point_3D>();
+        }
+        else return new ArrayList<Point_3D>();
     }
 }
 

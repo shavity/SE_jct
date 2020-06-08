@@ -40,7 +40,8 @@ public class Sphere extends RadialGeometry
         double d=Math.sqrt(Math.pow(L.length(),2)-Math.pow(tm,2));
         if (d>getRadius())
         {
-            return arrayList;
+            return null;
+            //return arrayList;
         }
         double th=Math.sqrt(Math.pow(getRadius(),2)-Math.pow(d,2));
         System.out.println(tm);

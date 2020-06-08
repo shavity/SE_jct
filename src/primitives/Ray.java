@@ -19,7 +19,7 @@ public class Ray
 
     public Ray(Vector v, Point_3D p)
     {
-        this.v = v;
+        this.v = v.normalize();
         this.p = p;
     }
 
@@ -41,7 +41,7 @@ public class Ray
 
     public void setV(Vector v)
     {
-        this.v = v;
+        this.v = v.normalize();
     }
 
     /**

@@ -2,7 +2,11 @@ package geometries;
 
 import primitives.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
 
 public class Plane implements Geometry
 {
@@ -53,8 +57,38 @@ public class Plane implements Geometry
         return v.normalized();
     }
 
+    /**
+     * Finds all the points of intersection of the given ray with the plane
+     * @param ray The ray with which the cutting with the plane is calculated
+     * @return All the points of intersection of the ray with the plane
+     */
+
     @Override
-    public List<Point_3D> findIntsersections(Ray ray) {
-        return null;
+    public List<Point_3D> findIntsersections(Ray ray)
+    {
+        List<Point_3D> list = new ArrayList<Point_3D>();
+        Vector n = new Vector(this.v.normalized());   // normal vector 90 degree to the plane
+        Vector v = new Vector(ray.getV());            // direction of ray
+        Point_3D q0 = this.p;                         // point on the plane
+        Point_3D p0 = ray.getP();                     // point on the plane
+        // get a vector on the plane by two points on the plane
+        if (isZero(n.dotProduct(v)))                     // if n is actually 90 degree to the plane
+        {
+            return list;
+        }
+
+        Vector v1 = p0.subtract(q0);
+        v1.scale(1/(n.dotProduct(v)));
+        double t = alignZero((n.scale(-1)).dotProduct(v1));
+        Point_3D p = p0.add(v.scale(t));
+
+        list.add(p);
+
+        if ((p.subtract(ray.getP()).dotProduct(v)) < 0)
+        {
+            return new ArrayList<Point_3D>();
+        }
+
+        return list;
     }
 }
