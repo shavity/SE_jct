@@ -1,6 +1,6 @@
 package geometries;
 
-import primitives.Point_3D;
+import primitives.Point3D;
 import primitives.Ray;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class Geometries implements Intersectable {
 
     }
     @Override
-    public List<Point_3D> findIntsersections(Ray ray) {
+    public List<Point3D> findIntsersections(Ray ray) {
         return null;
     }
 

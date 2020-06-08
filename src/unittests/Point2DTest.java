@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import primitives.Point_2D;
+import primitives.Point2D;
 import primitives.Coordinate;;
 
 
@@ -12,7 +12,7 @@ public class Point2DTest {
 
     @Test
     public void test() {
-        Point_2D p1 = new Point_2D(new Coordinate(1.0d),new Coordinate(2.0d));
+        Point2D p1 = new Point2D(new Coordinate(1.0d),new Coordinate(2.0d));
         /**
          check that p1 x = what we insert to him1
          */

@@ -1,6 +1,6 @@
 package geometries;
 
-import primitives.Point_3D;
+import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
@@ -20,7 +20,7 @@ public class Cylinder extends Tube
     }
 
     @Override
-    public Vector getNormal(Point_3D p)
+    public Vector getNormal(Point3D p)
     {
         /**
          * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה

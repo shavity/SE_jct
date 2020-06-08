@@ -62,10 +62,10 @@ public final class Main {
             out.println("ERROR: normalizated() function does not create a new vector");
 //
         // Test operations with points and vectors
-        Point_3D p1 = new Point_3D(1, 2, 3);
-        if (!Point_3D.ZERO.equals(p1.add(new Vector(-1, -2, -3))))
+        Point3D p1 = new Point3D(1, 2, 3);
+        if (!Point3D.ZERO.equals(p1.add(new Vector(-1, -2, -3))))
             out.println("ERROR: Point + Vector does not work correctly");
-        if (!new Vector(1, 1, 1).equals(new Point_3D(2, 3, 4).subtract(p1)))
+        if (!new Vector(1, 1, 1).equals(new Point3D(2, 3, 4).subtract(p1)))
             out.println("ERROR: Point - Point does not work correctly");
 
         out.println("If there were no any other outputs - all tests succeeded!");

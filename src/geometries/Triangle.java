@@ -1,28 +1,26 @@
 package geometries;
 
-import primitives.Point_3D;
+import primitives.Point3D;
 import primitives.Vector;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Triangle extends Polygon
 {
-    public Triangle(Point_3D p1, Point_3D p2, Point_3D p3)
+    public Triangle(Point3D p1, Point3D p2, Point3D p3)
     {
         super(p1, p2, p3);
     }
-    public ArrayList<Point_3D> getPoints()
+    public ArrayList<Point3D> getPoints()
     {
-        ArrayList<Point_3D> list=new ArrayList<Point_3D>();
+        ArrayList<Point3D> list=new ArrayList<Point3D>();
         list.add(this._vertices.get(0));
         list.add(this._vertices.get(1));
         list.add(this._vertices.get(2));
         return list;
     }
     @Override
-    public Vector getNormal(Point_3D point) {
+    public Vector getNormal(Point3D point) {
         /**
          * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
          * */

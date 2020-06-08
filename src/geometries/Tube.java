@@ -1,6 +1,6 @@
 package geometries;
 
-import primitives.Point_3D;
+import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
@@ -22,7 +22,7 @@ public class Tube extends RadialGeometry
     }
 
     @Override
-    public Vector getNormal(Point_3D point) {
+    public Vector getNormal(Point3D point) {
         /**
          * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
          *מסובך מדי נשלים בהמשך
@@ -31,7 +31,7 @@ public class Tube extends RadialGeometry
     }
 
     @Override
-    public List<Point_3D> findIntsersections(Ray ray) {
+    public List<Point3D> findIntsersections(Ray ray) {
         return null;
     }
 }

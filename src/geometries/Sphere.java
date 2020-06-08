@@ -1,30 +1,34 @@
+
+
 package geometries;
 
-import primitives.Point_3D;
+import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+
+import static java.lang.StrictMath.abs;
+import static java.lang.StrictMath.pow;
 
 public class Sphere extends RadialGeometry
 {
-    private Point_3D center;
+    private Point3D center;
 
-    public Sphere (Point_3D p, double r)
+    public Sphere (Point3D p, double r)
     {
         super(r);
         this.center = p;
     }
 
-    public Point_3D getCenter()
+    public Point3D getCenter()
     {
         return center;
     }
 
     @Override
-    public Vector getNormal(Point_3D p)
+    public Vector getNormal(Point3D p)
     {
         /**
          * בעיקון לא צריך לעשות בדיקה שהנקודה תקינה
@@ -33,29 +37,41 @@ public class Sphere extends RadialGeometry
     }
 
     @Override
-    public List<Point_3D> findIntsersections(Ray ray) {
-        ArrayList<Point_3D> arrayList=new ArrayList<>();
+    public List<Point3D> findIntsersections(Ray ray) {
+        ArrayList<Point3D> arrayList=new ArrayList<>();
+        Point3D point_3D;
+        //O-P
         Vector L=new Vector(center.subtract(ray.getP()));
+        //tm=L*V
         double tm=L.dotProduct(ray.getV());
-        double d=Math.sqrt(Math.pow(L.length(),2)-Math.pow(tm,2));
-        if (d>getRadius())
-        {
-            return null;
-            //return arrayList;
-        }
-        double th=Math.sqrt(Math.pow(getRadius(),2)-Math.pow(d,2));
-        System.out.println(tm);
-        System.out.println(th);
-
-        Point_3D point_3D;
-        point_3D=ray.getP().add(ray.getV().scale(Math.abs(tm-th)));
-        arrayList.add(point_3D);
-        Point_3D point_3D1=ray.getP().add(ray.getV().scale(tm+th));
-        if (point_3D==point_3D1 || L.length()<getRadius())
+        if (tm<=0)
         {
             return arrayList;
         }
-        arrayList.add(point_3D1);
+        //d=(|L|^2-tm^2)^0.5
+        double d = pow(pow(L.length(),2)-tm*tm,0.5);
+        double th=Math.sqrt(pow(getRadius(),2)-pow(d,2));
+        double t1=tm-th;
+        double t2=tm+th;
+        if (abs(d)>getRadius())
+        {
+            return arrayList;
+        }
+        else if (abs(d)==getRadius() && t1>0)
+        {
+            point_3D=ray.getP().add(ray.getV().scale(abs(t1)));
+            arrayList.add(point_3D);
+            return arrayList;
+        }
+        else {
+            point_3D=ray.getP().add(ray.getV().scale(abs(t1)));
+            arrayList.add(point_3D);
+            if (t2 > t1 && L.length()>getRadius()) {
+                Point3D point_3D1 = ray.getP().add(ray.getV().scale(t2));
+                arrayList.add(point_3D1);
+                return arrayList;
+            }
+        }
         return arrayList;
     }
 }

@@ -15,7 +15,7 @@ public class Polygon implements Geometry {
     /**
      * List of polygon's vertices
      */
-    protected List<Point_3D> _vertices;
+    protected List<Point3D> _vertices;
     /**
      * Associated plane in which the polygon lays
      */
@@ -42,7 +42,7 @@ public class Polygon implements Geometry {
      *                                  <li>The polygon is concave (not convex></li>
      *                                  </ul>
      */
-    public Polygon(Point_3D... vertices) {
+    public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
         _vertices = List.of(vertices);
@@ -52,7 +52,7 @@ public class Polygon implements Geometry {
         _plane = new Plane(vertices[0], vertices[1], vertices[2]);
         if (vertices.length == 3) return; // no need for more tests for a Triangle
 
-        Vector n = _plane.getNormal(new Point_3D()); // send point
+        Vector n = _plane.getNormal(new Point3D()); // send point
 
         // Subtracting any subsequent points will throw an IllegalArgumentException
         // because of Zero Vector if they are in the same point
@@ -80,13 +80,13 @@ public class Polygon implements Geometry {
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
     }
-    public boolean inSide(Ray ray,Point_3D point_3D)
+    public boolean inSide(Ray ray, Point3D point_3D)
     {
         if (_vertices.size()==3)
         {
-            Point_3D p0=_vertices.get(0);
-            Point_3D p1=_vertices.get(1);
-            Point_3D p2=_vertices.get(2);
+            Point3D p0=_vertices.get(0);
+            Point3D p1=_vertices.get(1);
+            Point3D p2=_vertices.get(2);
             Vector v1=p0.subtract(ray.getP());
             Vector v2=p1.subtract(ray.getP());
             Vector n1=v1.crossProduct(v2);
@@ -112,13 +112,13 @@ public class Polygon implements Geometry {
         return true;
     }
     @Override
-    public Vector getNormal(Point_3D point) {
+    public Vector getNormal(Point3D point) {
         return _plane.getNormal(point);   //send point
     }
 
     @Override
-    public List<Point_3D> findIntsersections(Ray ray) {
-        ArrayList<Point_3D> arrayList= (ArrayList<Point_3D>) _plane.findIntsersections(ray);
+    public List<Point3D> findIntsersections(Ray ray) {
+        ArrayList<Point3D> arrayList= (ArrayList<Point3D>) _plane.findIntsersections(ray);
         System.out.println(arrayList.size());
         if(arrayList.size()==1)
         {
@@ -126,9 +126,9 @@ public class Polygon implements Geometry {
             {
                 return arrayList;
             }
-            else return new ArrayList<Point_3D>();
+            else return new ArrayList<Point3D>();
         }
-        else return new ArrayList<Point_3D>();
+        else return new ArrayList<Point3D>();
     }
 }
 

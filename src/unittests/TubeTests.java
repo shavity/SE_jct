@@ -1,9 +1,8 @@
 package unittests;
 
-import geometries.Plane;
 import geometries.Tube;
 import org.junit.Test;
-import primitives.Point_3D;
+import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
@@ -13,14 +12,14 @@ public class TubeTests {
     @Test
     public void testNormal()
     {
-        Tube tube=new Tube(new Ray(new Vector(1,0,0),new Point_3D(0,0,0)),1);
+        Tube tube=new Tube(new Ray(new Point3D(0,0,0), new Vector(1,0,0)),1);
         /**
          * chek if get nurmal know if the point is ok (here is not ok)
          * */
-        assertEquals(tube.getNormal(new Point_3D(1,1,1)),new Vector(1,1,1));
+        assertEquals(tube.getNormal(new Point3D(1,1,1)),new Vector(1,1,1));
         /**
          * chek if get nurmal know if the point is ok (here is ok)
          * */
-        assertEquals(tube.getNormal(new Point_3D(1,0,1)),new Vector(new Point_3D(1,0,1).subtract(new Point_3D(1,1,0))));
+        assertEquals(tube.getNormal(new Point3D(1,0,1)),new Vector(new Point3D(1,0,1).subtract(new Point3D(1,1,0))));
     }
 }

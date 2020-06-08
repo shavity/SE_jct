@@ -1,12 +1,10 @@
 package primitives;
 
-import java.util.Objects;
-
 /**
  * Class 'Point_2D' is representing a dot on two-dimensional plane
  * for Cartesian Coordinate system.
  */
-public class Point_2D
+public class Point2D
 {
     private Coordinate x;
     private Coordinate y;
@@ -17,7 +15,7 @@ public class Point_2D
      * @param y for Y axis
      */
 
-    public Point_2D(Coordinate x, Coordinate y)
+    public Point2D(Coordinate x, Coordinate y)
     {
         this.x = x;
         this.y = y;
@@ -28,7 +26,7 @@ public class Point_2D
      * (0, 0)
      */
 
-    public Point_2D()
+    public Point2D()
     {
         this.x = new Coordinate(0);
         this.y = new Coordinate(0);
@@ -40,7 +38,7 @@ public class Point_2D
      * @param y for Y axis
      */
 
-    public Point_2D(double x, double y)
+    public Point2D(double x, double y)
     {
         this.x = new Coordinate(x);
         this.y = new Coordinate(y);
@@ -51,7 +49,7 @@ public class Point_2D
      * @param p2d
      */
 
-    public Point_2D(Point_2D p2d)
+    public Point2D(Point2D p2d)
     {
         this.x = p2d.x;
         this.y = p2d.y;
@@ -117,7 +115,7 @@ public class Point_2D
         {
             return false;
         }
-        Point_2D point_2D = (Point_2D) o;
+        Point2D point_2D = (Point2D) o;
         return x.equals(point_2D.x) && x.equals(point_2D.y);
     }
 }

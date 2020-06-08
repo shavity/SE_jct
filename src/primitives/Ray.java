@@ -1,7 +1,5 @@
 package primitives;
 
-import java.util.Objects;
-
 /**
  * the class 'Ray' is representing a ray that have direction and point that place it in the magnitude
  */
@@ -9,15 +7,15 @@ import java.util.Objects;
 public class Ray
 {
     private Vector v;
-    private Point_3D p;
+    private Point3D p;
 
     /**
      * Vector for direction and Point_3D to place it
-     * @param v direction Vector
      * @param p Point_3D, place
+     * @param v direction Vector
      */
 
-    public Ray(Vector v, Point_3D p)
+    public Ray(Point3D p, Vector v)
     {
         this.v = v.normalize();
         this.p = p;
@@ -49,12 +47,12 @@ public class Ray
      * @return Point_3D, place of Ray
      */
 
-    public Point_3D getP()
+    public Point3D getP()
     {
         return p;
     }
 
-    public void setP(Point_3D p)
+    public void setP(Point3D p)
     {
         this.p = p;
     }

@@ -1,6 +1,5 @@
 package primitives;
 
-import java.util.Objects;
 import java.lang.Math;
 
 /**
@@ -8,9 +7,9 @@ import java.lang.Math;
  * for Cartesian Coordinate system.
  */
 
-public class Point_3D extends Point_2D
+public class Point3D extends Point2D
 {
-    public static Point_3D ZERO = new Point_3D(0, 0, 0);
+    public static Point3D ZERO = new Point3D(0, 0, 0);
 
     /**
      * static ZERO to define the first of the hinges (x, y, z) as (0, 0, 0)
@@ -25,7 +24,7 @@ public class Point_3D extends Point_2D
      * @param z for Z axis
      */
 
-    public Point_3D(Coordinate x, Coordinate y, Coordinate z)
+    public Point3D(Coordinate x, Coordinate y, Coordinate z)
     {
         super(x, y);
         this.z = z;
@@ -36,13 +35,13 @@ public class Point_3D extends Point_2D
      * (0, 0, 0)
      */
 
-    public Point_3D()
+    public Point3D()
     {
         super(0d, 0d);
         this.z = new Coordinate(0);
     }
 
-    public Point_3D(double x, double y, double z)
+    public Point3D(double x, double y, double z)
     {
         super(x, y);
         this.z = new Coordinate(z);
@@ -53,7 +52,7 @@ public class Point_3D extends Point_2D
      * @param p3d
      */
 
-    public Point_3D(Point_3D p3d)
+    public Point3D(Point3D p3d)
     {
         super(p3d.getX(), p3d.getY());
         this.z = p3d.z;
@@ -99,7 +98,7 @@ public class Point_3D extends Point_2D
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Point_3D point_3D = (Point_3D) o;
+        Point3D point_3D = (Point3D) o;
 
         return point_3D.getX().equals(this.getX()) && point_3D.getY().equals(this.getY()) && point_3D.getZ().equals(this.getZ());
     }
@@ -110,9 +109,9 @@ public class Point_3D extends Point_2D
      * @return Vector from p3d to 'this'
      */
 
-    public Vector subtract(Point_3D p3d)
+    public Vector subtract(Point3D p3d)
     {
-        return new Vector(new Point_3D((-p3d.getX().get() + this.getX().get()), (-p3d.getY().get() + this.getY().get()), (-p3d.getZ().get() + this.getZ().get())));
+        return new Vector(new Point3D((-p3d.getX().get() + this.getX().get()), (-p3d.getY().get() + this.getY().get()), (-p3d.getZ().get() + this.getZ().get())));
     }
 
     /**
@@ -121,9 +120,9 @@ public class Point_3D extends Point_2D
      * @return Point_3D from 'this' by vec
      */
 
-    public Point_3D add(Vector vec)
+    public Point3D add(Vector vec)
     {
-        return new Point_3D((this.getX().get() + vec.getV().getX().get()), (this.getY().get() + vec.getV().getY().get()), (this.getZ().get() + vec.getV().getZ().get()));
+        return new Point3D((this.getX().get() + vec.getV().getX().get()), (this.getY().get() + vec.getV().getY().get()), (this.getZ().get() + vec.getV().getZ().get()));
     }
 
     /**
@@ -132,7 +131,7 @@ public class Point_3D extends Point_2D
      * @return double, the distance power by 2 between two points (3D)
      */
 
-    public double distanceSquared (Point_3D p3d)
+    public double distanceSquared (Point3D p3d)
     {
         return ((this.getX().get() - p3d.getX().get()) * (this.getX().get() - p3d.getX().get())
                 +
@@ -147,7 +146,7 @@ public class Point_3D extends Point_2D
      * @return double, the distance between two points (3D)
      */
 
-    public double distance (Point_3D p3d)
+    public double distance (Point3D p3d)
     {
         return Math.sqrt(this.distanceSquared(p3d));
     }

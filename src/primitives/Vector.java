@@ -1,6 +1,5 @@
 package primitives;
 
-import java.util.Objects;
 import java.lang.Math;
 
 /**
@@ -9,22 +8,22 @@ import java.lang.Math;
 
 public class Vector
 {
-    private Point_3D v;
+    private Point3D v;
 
     /**
      * one point is enough because its from (0, 0, 0)
      * @param v Point_3D destination of the vector
      */
 
-    public Vector(Point_3D v)
+    public Vector(Point3D v)
     {
-        if(v.equals(Point_3D.ZERO))
+        if(v.equals(Point3D.ZERO))
         {
             //מוזר מאוד
             //throw new IllegalArgumentException("Error - Vector 0");
         }
 
-        this.v = new Point_3D(v);
+        this.v = new Point3D(v);
     }
 
     public Vector(Vector vec)
@@ -39,7 +38,7 @@ public class Vector
             throw new IllegalArgumentException("Error - Vector 0");
         }
 
-        this.v = new Point_3D(x, y, z);
+        this.v = new Point3D(x, y, z);
     }
 
     public Vector(double x, double y, double z)
@@ -48,15 +47,15 @@ public class Vector
         {
             throw new IllegalArgumentException("Error - Vector 0");
         }
-        this.v = new Point_3D(x,y,z);
+        this.v = new Point3D(x,y,z);
     }
 
-    public Point_3D getV()
+    public Point3D getV()
     {
         return this.v;
     }
 
-    public void setV(Point_3D v)
+    public void setV(Point3D v)
     {
         this.v = v;
     }
@@ -89,11 +88,9 @@ public class Vector
         Coordinate y = new Coordinate(this.v.getY().get() * c);
         Coordinate z = new Coordinate(this.v.getZ().get() * c);
 
-        Point_3D p = new Point_3D(x, y, z);
+        Point3D p = new Point3D(x, y, z);
 
-        this.v = p;
-
-        return this;
+        return new Vector(p);
     }
 
     public double dotProduct (Vector vec)
@@ -114,7 +111,7 @@ public class Vector
 
     public double lengthSquared()
     {
-        return this.v.distanceSquared(Point_3D.ZERO);
+        return this.v.distanceSquared(Point3D.ZERO);
     }
 
     public double length()
@@ -124,14 +121,14 @@ public class Vector
 
     public Vector normalize()
     {
-        this.v = new Point_3D((new Coordinate(this.v.getX().get() / this.length())), (new Coordinate(this.v.getY().get() / this.length())), (new Coordinate(this.v.getZ().get() / this.length())));
+        this.v = new Point3D((new Coordinate(this.v.getX().get() / this.length())), (new Coordinate(this.v.getY().get() / this.length())), (new Coordinate(this.v.getZ().get() / this.length())));
 
         return this;
     }
 
     public Vector normalized()
     {
-        return  new Vector(new Point_3D(new Coordinate(this.v.getX().get() / this.length()),
+        return  new Vector(new Point3D(new Coordinate(this.v.getX().get() / this.length()),
                 new Coordinate(this.v.getY().get() / this.length()),
                 new Coordinate(this.v.getZ().get() / this.length())));
     }

@@ -11,9 +11,9 @@ import static primitives.Util.isZero;
 public class Plane implements Geometry
 {
     private Vector v;
-    private Point_3D p;
+    private Point3D p;
 
-    public Plane(Vector v, Point_3D p)
+    public Plane(Vector v, Point3D p)
     {
         this.v = v;
         this.p = p;
@@ -25,10 +25,10 @@ public class Plane implements Geometry
         this.v = pl.v;
     }
 
-    public Plane (Point_3D a, Point_3D b, Point_3D c)
+    public Plane (Point3D a, Point3D b, Point3D c)
     {
         this.p = a;
-        this.v = a.subtract(b).crossProduct(a.subtract(c));
+        this.v = a.subtract(b).crossProduct(a.subtract(c)).normalize();
     }
 
     public Vector getV()
@@ -41,18 +41,18 @@ public class Plane implements Geometry
         this.v = v;
     }
 
-    public Point_3D getP()
+    public Point3D getP()
     {
         return p;
     }
 
-    public void setP(Point_3D p)
+    public void setP(Point3D p)
     {
         this.p = p;
     }
 
     @Override
-    public Vector getNormal(Point_3D p3d)
+    public Vector getNormal(Point3D p3d)
     {
         return v.normalized();
     }
@@ -64,31 +64,18 @@ public class Plane implements Geometry
      */
 
     @Override
-    public List<Point_3D> findIntsersections(Ray ray)
+    public List<Point3D> findIntsersections(Ray ray)
     {
-        List<Point_3D> list = new ArrayList<Point_3D>();
-        Vector n = new Vector(this.v.normalized());   // normal vector 90 degree to the plane
-        Vector v = new Vector(ray.getV());            // direction of ray
-        Point_3D q0 = this.p;                         // point on the plane
-        Point_3D p0 = ray.getP();                     // point on the plane
-        // get a vector on the plane by two points on the plane
-        if (isZero(n.dotProduct(v)))                     // if n is actually 90 degree to the plane
+        //if there is an intersection, it will be t * r.vector away from r.point
+        double t = -1 * (v.dotProduct(ray.getP().subtract(p)))/(v.dotProduct(ray.getV()));
+        //this scalar multiplication will return zero if the point P0 + t*v is on the plane (90 degree angle)
+        if(Util.isZero(v.dotProduct(ray.getP().add(ray.getV().scale(t)).subtract(p))))
         {
-            return list;
+            List<Point3D> returnList = new ArrayList<Point3D>();
+            returnList.add(ray.getP().add(ray.getV().scale(t)));
+            return returnList;
         }
 
-        Vector v1 = p0.subtract(q0);
-        v1.scale(1/(n.dotProduct(v)));
-        double t = alignZero((n.scale(-1)).dotProduct(v1));
-        Point_3D p = p0.add(v.scale(t));
-
-        list.add(p);
-
-        if ((p.subtract(ray.getP()).dotProduct(v)) < 0)
-        {
-            return new ArrayList<Point_3D>();
-        }
-
-        return list;
+        return null;
     }
 }

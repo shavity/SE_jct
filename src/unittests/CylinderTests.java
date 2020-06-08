@@ -25,20 +25,20 @@ public class CylinderTests
     Cylinder cylinder = new Cylinder(direction, len, radius);*/
     @Test
     public void tesGetLen() {
-        Cylinder cylinder = new Cylinder(new Ray(new Vector(2,3,4),new Point_3D(1,1,1)),10,1);
+        Cylinder cylinder = new Cylinder(new Ray(new Point3D(1,1,1), new Vector(2,3,4)),10,1);
         assertEquals(cylinder.getLen(),10);
     }
     @Test
     public void testNormal()
     {
-        Cylinder cylinder=new Cylinder(new Ray(new Vector(1,0,0),new Point_3D(0,0,0)),10,1);
+        Cylinder cylinder=new Cylinder(new Ray(new Point3D(0,0,0), new Vector(1,0,0)),10,1);
         /**
          * chek if get nurmal know if the point is ok (here is not ok)
          * */
-        assertEquals(cylinder.getNormal(new Point_3D(1,1,1)),new Vector(1,1,1));
+        assertEquals(cylinder.getNormal(new Point3D(1,1,1)),new Vector(1,1,1));
         /**
          * chek if get nurmal know if the point is ok (here is ok)
          * */
-        assertEquals(cylinder.getNormal(new Point_3D(1,0,1)),new Vector(new Point_3D(1,0,1).subtract(new Point_3D(1,1,0))));
+        assertEquals(cylinder.getNormal(new Point3D(1,0,1)),new Vector(new Point3D(1,0,1).subtract(new Point3D(1,1,0))));
     }
 }
